@@ -32,3 +32,8 @@ div#navigation ul li a:hover {
 .fa-home {
 	font-size: 24px;
 }
+
+div#image-container {
+	margin-left: 450px;
+	margin-top: 30px;
+}

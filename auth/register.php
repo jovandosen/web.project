@@ -26,6 +26,52 @@
 			</ul>
 		</div>
 
+		<div id="register-container">
+			<form method="post" action="#">
+
+				<div id="name-container">
+					<div id="name-label">
+						<label for="name"><i class="fa fa-user icon"></i> Name:</label>
+					</div>
+					<div id="name-field">
+						<input type="text" name="name" id="name" autocomplete="off" minlength="3" maxlength="20" placeholder="Enter your name..." />
+					</div>
+					<div id="name-error">
+						<p>Name error message</p>
+					</div>
+				</div>
+
+				<div id="email-container">
+					<div id="email-label">
+						<label for="email"><i class="fa fa-envelope icon"></i> Email:</label>
+					</div>
+					<div id="email-field">
+						<input type="text" name="email" id="email" autocomplete="off" placeholder="Enter your email address..." />
+					</div>
+					<div id="email-error">
+						<p>Email error message</p>
+					</div>
+				</div>
+
+				<div id="password-container">
+					<div id="password-label">
+						<label for="password"><i class="fa fa-key icon"></i> Password:</label>
+					</div>
+					<div id="password-field">
+						<input type="password" name="password" id="password" minlength="3" maxlength="20" placeholder="Enter your password..." />
+					</div>
+					<div id="password-error">
+						<p>Password error message</p>
+					</div>
+				</div>
+
+				<div id="register-button-container">
+					<button type="button" id="register-button">REGISTER</button>
+				</div>
+
+			</form>
+		</div>
+
 		<script src="/../assets/js/register.js"></script>
 	</body>
 </html>

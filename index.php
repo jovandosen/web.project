@@ -25,6 +25,10 @@
 			</ul>
 		</div>
 
+		<div id="image-container">
+			<img src="/assets/images/home.jpg" />
+		</div>
+
 		<script src="/assets/js/index.js"></script>
 	</body>
 </html>

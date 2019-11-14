@@ -1,0 +1,42 @@
+div#register-container {
+	border: 1px solid #999;
+	width: 600px;
+	height: 260px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+div#name-container, div#email-container, div#password-container {
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+#name, #email, #password {
+	outline: none;
+	padding: 5px;
+	width: 580px;
+}
+
+div#name-error, div#email-error, div#password-error {
+	height: 17px;
+	padding: 2px;
+}
+
+div#register-button-container {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#register-button {
+	padding: 5px;
+	width: 580px;
+	background-color: white;
+	border: 1px solid #999;
+}
+
+#register-button:hover {
+	background-color: lightblue;
+	color: white;
+	transition: 0.4s;
+}
