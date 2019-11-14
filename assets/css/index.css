@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+div#navigation {
+	background-color: #999;
+	padding: 5px;
+}
+
+div#navigation ul {
+	list-style-type: none;
+}
+
+div#navigation ul li {
+	display: inline-block;
+	margin-left: 20px;
+	font-size: 20px;
+}
+
+div#navigation ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+div#navigation ul li a:hover {
+	color: lightblue;
+	transition: 0.4s;
+}
+
+.fa-home {
+	font-size: 24px;
+}
