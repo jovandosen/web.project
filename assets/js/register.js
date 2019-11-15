@@ -5,8 +5,7 @@ $(document).ready(function(){
 	});
 
 	$("#register-button").on("click", function(){
-		//validateRegister();
-		$("#register-form").submit();
+		validateRegister();
 	});
 
 });
@@ -63,6 +62,7 @@ function validateRegister()
 
 	if( nameError == '' ){
 		$("#name-error p").text('');
+		$("#name").val(name);
 		if( $("#name").hasClass("form-field-error") ){
 			$("#name").removeClass("form-field-error");
 		}
@@ -84,6 +84,7 @@ function validateRegister()
 
 	if( emailError == '' ){
 		$("#email-error p").text('');
+		$("#email").val(email);
 		if( $("#email").hasClass("form-field-error") ){
 			$("#email").removeClass("form-field-error");
 		}

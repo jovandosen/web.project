@@ -46,6 +46,8 @@ class Validator
 				return $emailError;
 			}
 		}
+
+		return $emailError;
 	}
 
 	public function validatePassword()
@@ -62,6 +64,8 @@ class Validator
 				return $passwordError;
 			}
 		}
+
+		return $passwordError;
 	}
 
 	private function validateEmailAddress($email)

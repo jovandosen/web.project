@@ -5,6 +5,7 @@
 	require __DIR__ . '/../vendor/autoload.php';
 
 	use App\Validation\ValidateRegister;
+	use App\Database\User;
 
 	if( isset($_POST['register-user']) && !empty($_POST['register-user']) ){
 
@@ -18,9 +19,10 @@
 		$emailError = $validateRegisterData->validateEmail();
 		$passwordError = $validateRegisterData->validatePassword();
 
-		var_dump($nameError);
-		var_dump($emailError);
-		var_dump($passwordError);
+		if( $nameError === false && $emailError === false && $passwordError === false ){
+			$user = new User();
+			$user->register($name, $email, $password);
+		}
 
 	}
 
@@ -61,10 +63,12 @@
 						<label for="name"><i class="fa fa-user icon"></i> Name:</label>
 					</div>
 					<div id="name-field">
-						<input type="text" name="name" id="name" autocomplete="off" minlength="3" maxlength="20" placeholder="Enter your name..." />
+						<input type="text" name="name" id="name" autocomplete="off" minlength="3" maxlength="20" placeholder="Enter your name..." 
+							class="<?php echo (isset($nameError) && !empty($nameError)) ? 'form-field-error' : ''; ?>" 
+							value="<?php echo (isset($name) && !empty($name)) ? $name : ''; ?>" />
 					</div>
 					<div id="name-error">
-						<p></p>
+						<p><?php echo (isset($nameError) && !empty($nameError)) ? $nameError : ''; ?></p>
 					</div>
 				</div>
 
@@ -73,10 +77,12 @@
 						<label for="email"><i class="fa fa-envelope icon"></i> Email:</label>
 					</div>
 					<div id="email-field">
-						<input type="text" name="email" id="email" autocomplete="off" placeholder="Enter your email address..." />
+						<input type="text" name="email" id="email" autocomplete="off" placeholder="Enter your email address..." 
+							class="<?php echo (isset($emailError) && !empty($emailError)) ? 'form-field-error' : ''; ?>" 
+							value="<?php echo (isset($email) && !empty($email)) ? $email : ''; ?>" />
 					</div>
 					<div id="email-error">
-						<p></p>
+						<p><?php echo (isset($emailError) && !empty($emailError)) ? $emailError : ''; ?></p>
 					</div>
 				</div>
 
@@ -85,11 +91,12 @@
 						<label for="password"><i class="fa fa-key icon"></i> Password:</label>
 					</div>
 					<div id="password-field">
-						<input type="password" name="password" id="password" minlength="3" maxlength="20" placeholder="Enter your password..." />
+						<input type="password" name="password" id="password" minlength="3" maxlength="20" placeholder="Enter your password..." 
+							class="<?php echo (isset($passwordError) && !empty($passwordError)) ? 'form-field-error' : ''; ?>" />
 						<i class="fa fa-eye-slash" aria-hidden="true" id="password-eye"></i>
 					</div>
 					<div id="password-error">
-						<p></p>
+						<p><?php echo (isset($passwordError) && !empty($passwordError)) ? $passwordError : ''; ?></p>
 					</div>
 				</div>
 
