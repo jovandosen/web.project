@@ -1,3 +1,30 @@
+<?php
+
+	session_start();
+
+	require __DIR__ . '/../vendor/autoload.php';
+
+	use App\Validation\ValidateRegister;
+
+	if( isset($_POST['register-user']) && !empty($_POST['register-user']) ){
+
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+			
+		$validateRegisterData = new ValidateRegister($name, $email, $password);
+
+		$nameError = $validateRegisterData->validateName();
+		$emailError = $validateRegisterData->validateEmail();
+		$passwordError = $validateRegisterData->validatePassword();
+
+		var_dump($nameError);
+		var_dump($emailError);
+		var_dump($passwordError);
+
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -27,7 +54,7 @@
 		</div>
 
 		<div id="register-container">
-			<form method="post" action="#" id="register-form">
+			<form method="post" action="register.php" id="register-form">
 
 				<div id="name-container">
 					<div id="name-label">
@@ -69,6 +96,8 @@
 				<div id="register-button-container">
 					<button type="button" id="register-button">REGISTER</button>
 				</div>
+
+				<input type="hidden" name="register-user" id="register-user" value="register-user" />
 
 			</form>
 		</div>
