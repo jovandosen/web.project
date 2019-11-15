@@ -27,7 +27,7 @@
 		</div>
 
 		<div id="register-container">
-			<form method="post" action="#">
+			<form method="post" action="#" id="register-form">
 
 				<div id="name-container">
 					<div id="name-label">
@@ -37,7 +37,7 @@
 						<input type="text" name="name" id="name" autocomplete="off" minlength="3" maxlength="20" placeholder="Enter your name..." />
 					</div>
 					<div id="name-error">
-						<p>Name error message</p>
+						<p></p>
 					</div>
 				</div>
 
@@ -49,7 +49,7 @@
 						<input type="text" name="email" id="email" autocomplete="off" placeholder="Enter your email address..." />
 					</div>
 					<div id="email-error">
-						<p>Email error message</p>
+						<p></p>
 					</div>
 				</div>
 
@@ -59,9 +59,10 @@
 					</div>
 					<div id="password-field">
 						<input type="password" name="password" id="password" minlength="3" maxlength="20" placeholder="Enter your password..." />
+						<i class="fa fa-eye-slash" aria-hidden="true" id="password-eye"></i>
 					</div>
 					<div id="password-error">
-						<p>Password error message</p>
+						<p></p>
 					</div>
 				</div>
 

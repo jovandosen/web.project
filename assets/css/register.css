@@ -1,6 +1,6 @@
 div#register-container {
-	border: 1px solid #999;
-	width: 600px;
+	border: 2px solid #999;
+	width: 603px;
 	height: 260px;
 	margin-left: auto;
 	margin-right: auto;
@@ -33,10 +33,30 @@ div#register-button-container {
 	width: 580px;
 	background-color: white;
 	border: 1px solid #999;
+	outline: none;
 }
 
 #register-button:hover {
 	background-color: lightblue;
 	color: white;
 	transition: 0.4s;
+}
+
+#password-field {
+	position: relative;
+}
+
+.fa-eye-slash, .fa-eye {
+	position: absolute;
+	font-size: 22px;
+	top: 2px;
+	left: 550px;
+}
+
+.form-field-error {
+	border: 1px solid red;
+}
+
+div#name-error, div#email-error, div#password-error {
+	color: red;
 }
