@@ -7,6 +7,8 @@
 	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
 		$user = $_SESSION['user'];
 		$userName = $user->name;
+	} else {
+		header('Location: /../auth/logout.php');
 	}
 
 ?>
@@ -35,7 +37,7 @@
 					<ul id="profile-links" style="display: none;">
 						<li><a href="#">Profile</a></li>
 						<li><a href="#">Settings</a></li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="/../auth/logout.php">Logout</a></li>
 					</ul>
 				</li>
 			</ul>

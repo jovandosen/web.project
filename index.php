@@ -21,7 +21,7 @@
 					</a>
 				</li>
 				<li><a href="/auth/register.php">REGISTER</a></li>
-				<li><a href="#">LOGIN</a></li>
+				<li><a href="/auth/login.php">LOGIN</a></li>
 			</ul>
 		</div>
 
