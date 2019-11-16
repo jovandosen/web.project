@@ -1,0 +1,16 @@
+#profile-name-link {
+	margin-left: 1620px !important;
+	position: relative;
+}
+
+#profile-links {
+	position: absolute;
+	background-color: #999;
+	top: 22px;
+	left: -20px;
+	width: 100px;
+}
+
+#profile-links li {
+	margin-top: 5px;
+}

@@ -30,6 +30,8 @@ class User extends Connection
 		$record->close();
 
 		$this->connection->close();
+
+		header('Location: /../../profile/profile.php');
 	}
 
 	public function findUserByEmail($email)
