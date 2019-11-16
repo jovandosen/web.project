@@ -1,3 +1,14 @@
+<?php
+
+	session_start();
+
+	require __DIR__ . '/../vendor/autoload.php';
+
+	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
+		header('Location: /../profile/profile.php');
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>

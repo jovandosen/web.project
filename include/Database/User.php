@@ -56,6 +56,23 @@ class User extends Connection
 
 		return $user; 
 	}
+
+	public function logout($id)
+	{
+		$sql = "UPDATE users SET logged=? WHERE userID=?";
+
+		$record = $this->connection->prepare($sql);
+
+		$logged = 0;
+
+		$record->bind_param("ii", $logged, $id);
+
+		$record->execute();
+
+		$record->close();
+
+		$this->connection->close();
+	}
 }
 
 ?>

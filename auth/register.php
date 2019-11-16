@@ -7,6 +7,10 @@
 	use App\Validation\ValidateRegister;
 	use App\Database\User;
 
+	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
+		header('Location: /../profile/profile.php');
+	}
+
 	if( isset($_POST['register-user']) && !empty($_POST['register-user']) ){
 
 		$name = $_POST['name'];
