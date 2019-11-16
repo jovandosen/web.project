@@ -16,12 +16,21 @@
 		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
+		$emails = $_POST['user-emails'];
 			
 		$validateRegisterData = new ValidateRegister($name, $email, $password);
 
 		$nameError = $validateRegisterData->validateName();
 		$emailError = $validateRegisterData->validateEmail();
 		$passwordError = $validateRegisterData->validatePassword();
+
+		$emails = explode(",", $emails);
+
+		foreach ($emails as $key => $value) {
+			if( $email == $value ){
+				$emailError = "Email address already exists.";
+			}
+		}
 
 		if( $nameError === false && $emailError === false && $passwordError === false ){
 			$user = new User();
@@ -109,6 +118,8 @@
 				</div>
 
 				<input type="hidden" name="register-user" id="register-user" value="register-user" />
+
+				<input type="hidden" name="user-emails" id="user-emails" value="" />
 
 			</form>
 		</div>

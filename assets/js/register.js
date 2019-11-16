@@ -8,6 +8,8 @@ $(document).ready(function(){
 		validateRegister();
 	});
 
+	getAllEmails();
+
 });
 
 function showHidePassword()
@@ -39,6 +41,7 @@ function validateRegister()
 	var name = $("#name").val();
 	var email = $("#email").val();
 	var password = $("#password").val();
+	var emails = $("#user-emails").val();
 
 	var nameError = '';
 	var emailError = '';
@@ -73,12 +76,20 @@ function validateRegister()
 		emailError = 'Email field can not be empty.';
 		$("#email-error p").text(emailError);
 		$("#email").addClass("form-field-error");
+	} else if( validateEmailAddress(email) === false ) {
+		error = true;
+		emailError = 'Email address is not valid.';
+		$("#email-error p").text(emailError);
+		$("#email").addClass("form-field-error");	
 	} else {
-		if( validateEmailAddress(email) === false ){
-			error = true;
-			emailError = 'Email address is not valid.';
-			$("#email-error p").text(emailError);
-			$("#email").addClass("form-field-error");
+		emails = emails.split(",");
+		for(var i = 0; i < emails.length; i++){
+			if( email == emails[i] ){
+				error = true;
+				emailError = 'Email address already exists.';
+				$("#email-error p").text(emailError);
+				$("#email").addClass("form-field-error");
+			}
 		}
 	}
 
@@ -123,4 +134,24 @@ function validateEmailAddress(email)
 	var regularEx = /\S+@\S+\.\S+/;
 
 	return regularEx.test(email);
+}
+
+function getAllEmails()
+{
+	$.ajax({
+		url: "/../include/External.php",
+		method: "POST",
+		success: function(response){
+			if(response){
+				var emails = JSON.parse(response);
+				$("#user-emails").val(emails);
+			} else {
+				$("#user-emails").val('');
+			}
+			
+		},
+		error: function(){
+
+		}	
+	});
 }
