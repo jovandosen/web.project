@@ -4,8 +4,37 @@
 
 	require __DIR__ . '/../vendor/autoload.php';
 
+	use App\Validation\ValidateLogin;
+	use App\Database\User;
+
 	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
 		header('Location: /../profile/profile.php');
+	}
+
+	if( isset($_POST['login-user']) && !empty($_POST['login-user']) ){
+		
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+
+		$validateLoginData = new ValidateLogin($email, $password);
+
+		$emailError = $validateLoginData->validateEmail();
+		$passwordError = $validateLoginData->validatePassword();
+
+		if( $emailError === false && $passwordError === false ){
+			$user = new User();
+			$result = $user->login($email, $password);
+
+			if( $result[0] == 'email' ){
+				$emailError = $result[1];
+			}
+
+			if( $result[0] == 'password' ){
+				$passwordError = $result[1];
+			}
+
+		}
+
 	}
 
 ?>

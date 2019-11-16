@@ -76,6 +76,60 @@ class User extends Connection
 
 		$this->connection->close();
 	}
+
+	public function login($email, $password)
+	{
+		$sql = "SELECT * FROM users WHERE email=?";
+
+		$record = $this->connection->prepare($sql);
+
+		$record->bind_param("s", $email);
+
+		$record->execute();
+
+		$result = $record->get_result();
+
+		$user = '';
+
+		if( $result->num_rows === 1 ){
+			while( $row = mysqli_fetch_object($result) ){
+				$user = $row;
+			}
+		} else {
+			return array('email', 'Email address is not correct or does not exist.');
+		}
+
+		if($user){
+			if( password_verify($password, $user->password) ){
+				
+				$sqlData = "UPDATE users SET logged=?, loggTime=? WHERE userID=?";
+
+				$recordData = $this->connection->prepare($sqlData);
+
+				$logged = 1;
+
+				$loggTime = date('Y-m-d H:i:s');
+
+				$recordData->bind_param("isi", $logged, $loggTime, $user->userID);
+
+				$recordData->execute();
+
+				$_SESSION['user'] = $user;
+
+				$record->close();
+
+				$recordData->close();
+
+				$this->connection->close();
+
+				header('Location: /../../profile/profile.php');
+
+			} else {
+				return array('password', 'Password is not correct.');
+			}
+		}
+
+	}
 }
 
 ?>
