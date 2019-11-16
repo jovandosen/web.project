@@ -3,6 +3,7 @@
 namespace App\Database;
 
 use App\Database\Connection;
+use App\Mail\WelcomeMail;
 
 class User extends Connection
 {
@@ -30,6 +31,8 @@ class User extends Connection
 		$record->close();
 
 		$this->connection->close();
+
+		$sendWelcomeMail = new WelcomeMail($user->name, $user->email);
 
 		header('Location: /../../profile/profile.php');
 	}
