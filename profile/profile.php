@@ -52,6 +52,12 @@
 			</ul>
 		</div>
 
+		<?php if( isset($_SESSION['message']) && !empty($_SESSION['message']) ): ?>
+			<div id="register-flash-message">
+				<p><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
+			</div>
+		<?php endif; ?>
+
 		<script src="/../assets/js/profile.js"></script>
 	</body>
 </html>

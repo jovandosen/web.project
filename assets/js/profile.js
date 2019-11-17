@@ -8,4 +8,17 @@ $(document).ready(function(){
 		$("#profile-links").css({"display":"none"});
 	});
 
+	checkRegisterFlashMessage();
+
 });
+
+function checkRegisterFlashMessage()
+{
+	var message = $("#register-flash-message p").text();
+
+	if( message != '' ){
+		setTimeout(function(){
+			$("#register-flash-message").css({"display":"none"});
+		}, 5000);
+	}
+}

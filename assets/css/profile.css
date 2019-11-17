@@ -14,3 +14,13 @@
 #profile-links li {
 	margin-top: 5px;
 }
+
+div#register-flash-message {
+	width: 400px;
+	height: 30px;
+	border: 1px solid #999;
+	margin-top: 10px;
+	margin-left: 40px;
+	border-left: 5px solid limegreen;
+	padding: 5px;
+}
