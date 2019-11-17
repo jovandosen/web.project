@@ -4,36 +4,18 @@
 
 	require __DIR__ . '/../vendor/autoload.php';
 
-	use App\Validation\ValidateLogin;
 	use App\Database\User;
 
 	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
 		header('Location: /../profile/profile.php');
 	}
 
-	if( isset($_POST['login-user']) && !empty($_POST['login-user']) ){
+	if( isset($_POST['forgot-password-hidden']) && !empty($_POST['forgot-password-hidden']) ){
 		
 		$email = $_POST['email'];
-		$password = $_POST['password'];
+		$emails = $_POST['user-emails'];
 
-		$validateLoginData = new ValidateLogin($email, $password);
 
-		$emailError = $validateLoginData->validateEmail();
-		$passwordError = $validateLoginData->validatePassword();
-
-		if( $emailError === false && $passwordError === false ){
-			$user = new User();
-			$result = $user->login($email, $password);
-
-			if( $result[0] == 'email' ){
-				$emailError = $result[1];
-			}
-
-			if( $result[0] == 'password' ){
-				$passwordError = $result[1];
-			}
-
-		}
 
 	}
 
@@ -41,14 +23,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Login</title>
+		<title>Forgot Password</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="icon" href="/../assets/images/image_test.jpg">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="/../assets/css/index.css">
-		<link rel="stylesheet" type="text/css" href="/../assets/css/register.css">
 		<link rel="stylesheet" type="text/css" href="/../assets/css/login.css">
+		<link rel="stylesheet" type="text/css" href="/../assets/css/register.css">
 		<link rel="stylesheet" type="text/css" href="/../assets/css/forgot-password.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
@@ -68,8 +50,8 @@
 			</ul>
 		</div>
 
-		<div id="login-container">
-			<form method="post" action="login.php" id="login-form">
+		<div id="forgot-password-container">
+			<form method="post" action="forgot-password.php" id="forgot-password-form">
 				
 				<div id="email-container">
 					<div id="email-label">
@@ -85,33 +67,17 @@
 					</div>
 				</div>
 
-				<div id="password-container">
-					<div id="password-label">
-						<label for="password"><i class="fa fa-key icon"></i> Password:</label>
-					</div>
-					<div id="password-field">
-						<input type="password" name="password" id="password" minlength="3" maxlength="20" placeholder="Enter your password..." 
-							class="<?php echo (isset($passwordError) && !empty($passwordError)) ? 'form-field-error' : ''; ?>" />
-						<i class="fa fa-eye-slash" aria-hidden="true" id="password-eye"></i>
-					</div>
-					<div id="password-error">
-						<p><?php echo (isset($passwordError) && !empty($passwordError)) ? $passwordError : ''; ?></p>
-					</div>
+				<div id="forgot-password-button-container">
+					<button type="button" id="forgot-password-button">SEND</button>
 				</div>
 
-				<div id="login-button-container">
-					<button type="button" id="login-button">LOGIN</button>
-				</div>
+				<input type="hidden" name="forgot-password-hidden" id="forgot-password-hidden" value="forgot-password-hidden" />
 
-				<div id="forgot-password-link-container">
-					<a href="/auth/forgot-password.php">Forgot password ?</a>
-				</div>
-
-				<input type="hidden" name="login-user" id="login-user" value="login-user" />
+				<input type="hidden" name="user-emails" id="user-emails" value="" />
 
 			</form>
 		</div>
 
-		<script src="/../assets/js/login.js"></script>
+		<script src="/../assets/js/forgot-password.js"></script>
 	</body>
 </html>
