@@ -6,6 +6,8 @@ $(document).ready(function(){
 
 	getAllEmails();
 
+	checkMailFlashMessage();
+
 });
 
 function validateForgotPassword()
@@ -82,4 +84,15 @@ function getAllEmails()
 
 		}	
 	});
+}
+
+function checkMailFlashMessage()
+{
+	var message = $("#mail-flash-message p").text();
+
+	if( message != '' ){
+		setTimeout(function(){
+			$("#mail-flash-message").css({"display":"none"});
+		}, 5000);
+	}
 }

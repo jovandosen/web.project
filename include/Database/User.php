@@ -140,6 +140,10 @@ class User extends Connection
 		$userEmail = $user->email;
 
 		$forgotPasswordMail = new ForgotPasswordMail($userName, $userEmail);
+
+		$_SESSION['mail'] = 'Mail sent successfully.';
+
+		header('Location: /auth/forgot-password.php');
 	}
 }
 

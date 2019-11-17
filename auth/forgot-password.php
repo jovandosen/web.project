@@ -102,6 +102,12 @@
 			</form>
 		</div>
 
+		<?php if( isset($_SESSION['mail']) && !empty($_SESSION['mail']) ): ?>
+			<div id="mail-flash-message">
+				<p><?php echo $_SESSION['mail']; unset($_SESSION['mail']); ?></p>
+			</div>
+		<?php endif; ?>
+
 		<script src="/../assets/js/forgot-password.js"></script>
 	</body>
 </html>
