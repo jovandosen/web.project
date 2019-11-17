@@ -4,6 +4,7 @@ namespace App\Database;
 
 use App\Database\Connection;
 use App\Mail\WelcomeMail;
+use App\Mail\ForgotPasswordMail;
 
 class User extends Connection
 {
@@ -129,6 +130,16 @@ class User extends Connection
 			}
 		}
 
+	}
+
+	public function sendForgotPasswordMail($email)
+	{
+		$user = $this->findUserByEmail($email);
+
+		$userName = $user->name;
+		$userEmail = $user->email;
+
+		$forgotPasswordMail = new ForgotPasswordMail($userName, $userEmail);
 	}
 }
 

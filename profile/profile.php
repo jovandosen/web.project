@@ -4,6 +4,15 @@
 
 	require __DIR__ . '/../vendor/autoload.php';
 
+	use App\Database\User;
+
+	if( isset($_GET['email']) && !empty($_GET['email']) ){
+		$emailData = $_GET['email'];
+		$userDetails = new User();
+		$userInfo = $userDetails->findUserByEmail($emailData);
+		$_SESSION['user'] = $userInfo;
+	}
+
 	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
 		$user = $_SESSION['user'];
 		$userName = $user->name;

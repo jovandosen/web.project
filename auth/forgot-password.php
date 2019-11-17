@@ -4,6 +4,7 @@
 
 	require __DIR__ . '/../vendor/autoload.php';
 
+	use App\Validation\ValidateForgotPassword;
 	use App\Database\User;
 
 	if( isset($_SESSION['user']) && !empty($_SESSION['user']) ){
@@ -15,7 +16,30 @@
 		$email = $_POST['email'];
 		$emails = $_POST['user-emails'];
 
+		$validateForgotPassword = new ValidateForgotPassword($email);
 
+		$emailError = $validateForgotPassword->validateEmail();
+
+		if( $emailError === false ){
+			$emails = explode(",", $emails);
+
+			$checkIfEmailExists = 0;
+
+			foreach($emails as $key => $value){
+				if( $email == $value ){
+					$checkIfEmailExists = 1;
+				}
+			}
+
+			if( $checkIfEmailExists === 0 ){
+				$emailError = 'Email address does not exists.';
+			}
+		}
+
+		if( $emailError === false ){
+			$user = new User();
+			$user->sendForgotPasswordMail($email);
+		}
 
 	}
 
